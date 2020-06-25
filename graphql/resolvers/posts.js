@@ -2,7 +2,7 @@
  * @Author: hhhhhq
  * @Date: 2020-06-20 09:46:16
  * @LastEditors: hhhhhq
- * @LastEditTime: 2020-06-22 10:46:44
+ * @LastEditTime: 2020-06-23 23:20:59
  * @Description: file content
  */ 
 const Post = require('../../models/Post')
@@ -36,6 +36,10 @@ module.exports = {
   Mutation: {
     async createPost(_, { body }, context) {
       const user = checkAuth(context)
+
+      if(body.trim() === '') {
+        throw new Error('post can not be empty')
+      }
 
       const newPost = new Post({
         body,

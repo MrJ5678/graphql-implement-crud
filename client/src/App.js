@@ -2,17 +2,36 @@
  * @Author: hhhhhq
  * @Date: 2020-04-11 21:43:44
  * @LastEditors: hhhhhq
- * @LastEditTime: 2020-06-22 11:00:43
+ * @LastEditTime: 2020-06-23 12:56:32
  * @Description: file content
  */ 
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Container } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
+
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import MenuBar from './components/MenuBar'
+
+import { AuthProvider } from './context/auth'
+import AuthRoute from './utils/AuthRoute'
+import SinglePost from './pages/SinglePost'
 
 function App() {
   return (
-    <div>
-      <h1>hi world</h1>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Container>
+          <MenuBar />
+          <Route exact path="/" component={ Home } />
+          <Route exact path="/posts/:postId" component={ SinglePost } />
+          <AuthRoute exact path="/login" component={ Login } />
+          <AuthRoute exact path="/register" component={ Register } />
+        </Container>
+      </Router>
+    </AuthProvider>
   );
 }
 

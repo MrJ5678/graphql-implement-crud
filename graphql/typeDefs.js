@@ -2,31 +2,33 @@
  * @Author: hhhhhq
  * @Date: 2020-06-20 09:41:39
  * @LastEditors: hhhhhq
- * @LastEditTime: 2020-06-22 10:44:29
+ * @LastEditTime: 2020-06-22 19:04:02
  * @Description: file content
  */ 
 const { gql } = require('apollo-server')
 
 module.exports = gql`
   type Post {
-    id: ID!,
-    body: String!,
-    createdAt: String!,
-    username: String!,
-    comments: [Comment]!,
+    id: ID!
+    body: String!
+    createdAt: String!
+    username: String!
+    comments: [Comment]!
     likes: [Like]!
+    likeCount: Int!
+    commentCount: Int!
   }
 
   type Comment {
-    id: ID!,
-    body: String!,
-    username: String!,
+    id: ID!
+    body: String!
+    username: String!
     createdAt: String!
   }
 
   type Like {
-    id: ID!,
-    username: String!,
+    id: ID!
+    username: String!
     createdAt: String!
   }
 
@@ -36,17 +38,17 @@ module.exports = gql`
   }
 
   type User {
-    id: ID!,
-    username: String!,
-    email: String!,
-    createdAt: String!,
+    id: ID!
+    username: String!
+    email: String!
+    createdAt: String!
     token: String!
   }
 
   input RegisterInput {
-    username: String!,
-    email: String!,
-    password: String!,
+    username: String!
+    email: String!
+    password: String!
     confirmPassword: String!
   }
 
